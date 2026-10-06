@@ -64,6 +64,7 @@ def is_valid_groq_key(key: str | None) -> bool:
 client = None
 
 if is_valid_groq_key(GROQ_API_KEY):
+    assert GROQ_API_KEY is not None  # Type narrowing for Pylance
     print("=" * 60)
     print("GROQ API KEY FOUND")
     print("KEY:", GROQ_API_KEY[:7] + "..." + GROQ_API_KEY[-4:])
