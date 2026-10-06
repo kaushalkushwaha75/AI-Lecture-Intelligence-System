@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Uploads & generated audio (user data, not tracked in git)
+backend/uploads/
+backend/audio/
+uploads/
+
+# Logs
+*.log
+backend/startup_out.log
+backend/startup_err.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (if any tooling is added)
+node_modules/
+package-lock.json
+
+# Dist
+.dist/

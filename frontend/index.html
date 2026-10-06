@@ -1,0 +1,366 @@
+<!--http://127.0.0.1:8000-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Lecture Intelligence System</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!--SIDEBAR-->
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <div>
+                <h2>LectureAI</h2>
+                <p>Smart Academic Assistant</p>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" class="nav-link active" data-page="dashboard">
+                <span class="nav-icon">🏠</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-link" data-page="lectures">
+                <span class="nav-icon">📚</span>
+                My Lectures
+            </a>
+            <a href="#" class="nav-link" data-page="upload">
+                <span class="nav-icon">⬆️</span>
+                Upload Lecture
+            </a>
+            <a href="#" class="nav-link" data-page="quiz">
+                <span class="nav-icon">📝</span>
+                AI Quiz
+            </a>
+            <a href="#" class="nav-link" data-page="ask">
+                <span class="nav-icon">💬</span>
+                Ask My Lecture
+            </a>
+            <a href="#" class="nav-link" data-page="analytics">
+                <span class="nav-icon">📊</span>
+                Analytics
+            </a>
+        </nav>
+    </aside>
+
+    <!--MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+
+            <div class="header-right">
+                <div class="active-badge" id="headerActiveBadge">
+                    <span class="pulse-dot"></span>
+                    <span id="headerLectureName">No lecture active</span>
+                </div>
+                <div class="notification" title="System Ready">🔔</div>
+                <div class="profile">
+                    <div class="profile-avatar">S</div>
+                    <div class="profile-info">
+                        <strong>Student</strong>
+                        <span>B.Tech Academic</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!--DASHBOARD-->
+            <section class="page active-page" id="dashboard">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h2>Welcome to LectureAI 👋</h2>
+                        <p>
+                            Transform complex engineering lectures into clear study notes, interactive Q&A, and
+                            auto-generated quizzes powered by high-speed AI.
+                        </p>
+                    </div>
+                    <div class="welcome-badge" id="welcomeStatus">
+                        Ready to Learn
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div>
+                            <h2 id="totalLectures">0</h2>
+                            <p>Total Lectures</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🧠</div>
+                        <div>
+                            <h2 id="notesCount">0</h2>
+                            <p>AI Notes Generated</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div>
+                            <h2 id="quizCount">0</h2>
+                            <p>Quizzes Completed</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">💬</div>
+                        <div>
+                            <h2 id="questionCount">0</h2>
+                            <p>Questions Asked</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header flex-between">
+                            <h3>Recent Lectures</h3>
+                            <button type="button" class="text-btn" onclick="showPage('lectures')">View All →</button>
+                        </div>
+                        <div id="recentLectures" class="lecture-list">
+                            <p class="empty-hint">No lectures uploaded yet.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <div class="quick-action" onclick="showPage('upload')">
+                                <div class="quick-action-icon">⬆️</div>
+                                <h4>Upload Lecture</h4>
+                                <p>Add video or audio lecture</p>
+                            </div>
+                            <div class="quick-action" onclick="showPage('ask')">
+                                <div class="quick-action-icon">💬</div>
+                                <h4>Ask AI</h4>
+                                <p>Query lecture content</p>
+                            </div>
+                            <div class="quick-action" onclick="showPage('quiz')">
+                                <div class="quick-action-icon">📝</div>
+                                <h4>Take Quiz</h4>
+                                <p>Test lecture retention</p>
+                            </div>
+                            <div class="quick-action" onclick="showPage('lectures')">
+                                <div class="quick-action-icon">📚</div>
+                                <h4>My Lectures</h4>
+                                <p>Manage repository</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--MY LECTUREs-->
+            <section class="page" id="lectures">
+                <div class="page-header">
+                    <div>
+                        <h2>My Lectures</h2>
+                        <p>Manage, view, and select your uploaded lectures.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button type="button" class="primary-btn" id="lectureUploadBtn">
+                            + Upload New
+                        </button>
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="lectureSearch" placeholder="Search lectures...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lectures-grid" id="lectureList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📚</div>
+                        <h3>No lectures yet</h3>
+                        <p>Upload your first lecture to get started.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--UPLOAD LECTURE-->
+            <section class="page" id="upload">
+                <div class="page-header">
+                    <div>
+                        <h2>Upload Lecture</h2>
+                        <p>Upload MP4, MOV, MP3, or WAV for automatic transcription & study materials.</p>
+                    </div>
+                </div>
+
+                <div class="upload-container">
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon">📤</div>
+                        <h2>Upload your lecture</h2>
+                        <p>Drag & drop your file here or browse from your computer.</p>
+                        <label for="fileInput" class="file-label">Choose File</label>
+                        <input type="file" id="fileInput" class="upload-input"
+                            accept=".mp3,.wav,.mp4,.m4a,.mov,.avi,.mkv,.webm">
+                        <p class="format-note">Supports MP4, MOV, AVI, MKV, WEBM, MP3, WAV, M4A</p>
+                    </div>
+
+                    <div class="processing-card" id="processingCard">
+                        <h3>AI Processing Pipeline</h3>
+                        <div class="process-step" id="step1">
+                            <span>01</span>
+                            <p>Upload lecture</p>
+                            <b>○</b>
+                        </div>
+                        <div class="process-step" id="step2">
+                            <span>02</span>
+                            <p>Speech-to-text transcription</p>
+                            <b>○</b>
+                        </div>
+                        <div class="process-step" id="step3">
+                            <span>03</span>
+                            <p>AI study notes generation</p>
+                            <b>○</b>
+                        </div>
+                        <div class="process-step" id="step4">
+                            <span>04</span>
+                            <p>Ready for AI Quiz & Q&A</p>
+                            <b>○</b>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="transcriptContainer"></div>
+                <div id="notesContainer"></div>
+            </section>
+
+            <!--AI QUIZ-->
+            <section class="page" id="quiz">
+                <div class="page-header">
+                    <div>
+                        <h2>AI Quiz</h2>
+                        <p>Test your understanding with instant AI-generated multiple choice questions.</p>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="primary-btn" id="generateQuizBtn">
+                            ⚡ Generate New Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quiz-container" id="quizContainer">
+                    <div class="quiz-card quiz-placeholder">
+                        <div class="quiz-empty-icon">🎯</div>
+                        <h3>Interactive Lecture Quiz</h3>
+                        <p id="quizPromptText">Upload or select a lecture to generate customized multiple-choice
+                            questions.</p>
+                        <button type="button" class="primary-btn" id="startQuizBtn" style="margin-top:15px;">
+                            Generate AI Quiz
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!--ASK MY LECTURe -->
+            <section class="page" id="ask">
+                <div class="page-header">
+                    <div>
+                        <h2>Ask My Lecture</h2>
+                        <p>Chat directly with your lecture transcript to clarify concepts and prepare for exams.</p>
+                    </div>
+                    <div>
+                        <button type="button" class="secondary-btn" id="clearChatBtn">
+                            🧹 Clear Chat
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div class="chat-header-bar" id="chatActiveBanner">
+                        <span>📖 Active Lecture: <strong id="chatLectureName">None selected</strong></span>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message ai-message">
+                            🤖 <strong>Hello!</strong> Upload a lecture or select one from <em>My Lectures</em>, and ask
+                            me anything about it.
+                        </div>
+                    </div>
+
+                    <div class="chat-input">
+                        <input type="text" id="questionInput"
+                            placeholder="Ask a question about this lecture (e.g. What are the key formulas?)...">
+                        <button id="askBtn" type="button">Send</button>
+                    </div>
+                </div>
+            </section>
+
+            <!--ANALYTIC-->
+            <section class="page" id="analytics">
+                <div class="page-header">
+                    <div>
+                        <h2>Analytics & Progress</h2>
+                        <p>Track your academic engagement and study metrics.</p>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Total Lectures</h3>
+                        <div class="analytics-number" id="analyticsLectures">0</div>
+                        <p>Uploaded repository lectures</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>AI Study Notes</h3>
+                        <div class="analytics-number" id="analyticsNotes">0</div>
+                        <p>Comprehensive summaries generated</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Questions Asked</h3>
+                        <div class="analytics-number" id="analyticsQuestions">0</div>
+                        <p>AI lecture questions answered</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Quizzes Completed</h3>
+                        <div class="analytics-number" id="analyticsQuizzes">0</div>
+                        <p>Knowledge check sessions</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Active Lecture</h3>
+                        <div class="analytics-subtext" id="analyticsActiveLecture">None</div>
+                        <p>Currently loaded in AI context</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>System Status</h3>
+                        <div class="analytics-subtext green" id="analyticsAIStatus">FastAPI & Groq Online</div>
+                        <p>AI Models ready</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

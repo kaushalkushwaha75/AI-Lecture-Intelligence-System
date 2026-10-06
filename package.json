@@ -1,0 +1,33 @@
+{
+  "name": "ai-lecture-intelligence-system",
+  "version": "4.0.0",
+  "description": "AI-powered lecture intelligence system — upload lectures, get AI transcriptions, study notes, quizzes, and Q&A powered by Groq.",
+  "main": "backend/main.py",
+  "scripts": {
+    "start": "cd backend && uvicorn main:app --host 0.0.0.0 --port 8000",
+    "dev": "cd backend && uvicorn main:app --host 127.0.0.1 --port 8000 --reload",
+    "install:backend": "pip install -r backend/requirements.txt",
+    "setup": "npm run install:backend"
+  },
+  "keywords": [
+    "ai",
+    "lecture",
+    "transcription",
+    "fastapi",
+    "groq",
+    "whisper",
+    "education",
+    "quiz",
+    "study-notes"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "python": ">=3.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
